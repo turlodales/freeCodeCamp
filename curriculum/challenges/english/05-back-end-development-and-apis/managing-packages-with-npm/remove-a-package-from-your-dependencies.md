@@ -12,7 +12,7 @@ You have now tested a few ways you can manage dependencies of your project by us
 
 But what if you want to remove an external package that you no longer need? You might already have guessed it, just remove the corresponding key-value pair for that package from your dependencies.
 
-This same method applies to removing other fields in your package.json as well
+This same method applies to removing other fields in your package.json as well.
 
 # --instructions--
 
@@ -41,12 +41,3 @@ Remove the `@freecodecamp/example` package from your dependencies.
   );
 ```
 
-# --solutions--
-
-```js
-/**
-  Backend challenges don't need solutions, 
-  because they would need to be tested against a full working project. 
-  Please check our contributing guidelines to learn more.
-*/
-```
