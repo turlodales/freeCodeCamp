@@ -1,12 +1,11 @@
 import path from 'path';
 import { readFile } from 'fs/promises';
-import { availableLangs } from '../../config/i18n/all-langs';
+import { availableLangs } from '../../shared/config/i18n';
 import introSchema from './locales/english/intro.json';
 import linksSchema from './locales/english/links.json';
 import metaTagsSchema from './locales/english/meta-tags.json';
 import motivationSchema from './locales/english/motivation.json';
 import translationsSchema from './locales/english/translations.json';
-import trendingSchema from './locales/english/trending.json';
 
 type MotivationalQuotes = { quote: string; author: string }[];
 
@@ -113,7 +112,6 @@ const noEmptyObjectValues = (
  * fetching within iterative function.
  */
 const translationSchemaKeys = Object.keys(flattenAnObject(translationsSchema));
-const trendingSchemaKeys = Object.keys(flattenAnObject(trendingSchema));
 const motivationSchemaKeys = Object.keys(flattenAnObject(motivationSchema));
 const introSchemaKeys = Object.keys(flattenAnObject(introSchema));
 const metaTagsSchemaKeys = Object.keys(flattenAnObject(metaTagsSchema));
@@ -133,19 +131,6 @@ const translationSchemaValidation = (languages: string[]) => {
         fileJson,
         translationSchemaKeys
       );
-    });
-  });
-};
-
-/**
- * Function that checks the trending.json file
- * for each available client language.
- * @param {String[]} languages List of languages to test
- */
-const trendingSchemaValidation = (languages: string[]) => {
-  languages.forEach(language => {
-    void readJsonFile(language, 'trending').then(fileJson => {
-      schemaValidation(language, 'trending', fileJson, trendingSchemaKeys);
     });
   });
 };
@@ -230,7 +215,7 @@ const schemaValidation = (
   if (
     fileName === 'motivation' &&
     !(fileJson.motivationalQuotes as MotivationalQuotes).every(
-      (object: object) =>
+      object =>
         Object.prototype.hasOwnProperty.call(object, 'quote') &&
         Object.prototype.hasOwnProperty.call(object, 'author')
     )
@@ -250,10 +235,11 @@ const readJsonFile = async (language: string, fileName: string) => {
   return fileJson;
 };
 
-const translatedLangs = availableLangs.client.filter(x => x !== 'english');
+const translatedLangs = availableLangs.client.filter(
+  x => String(x) !== 'english'
+);
 
 translationSchemaValidation(translatedLangs);
-trendingSchemaValidation(translatedLangs);
 motivationSchemaValidation(translatedLangs);
 introSchemaValidation(translatedLangs);
 metaTagsSchemaValidation(translatedLangs);
