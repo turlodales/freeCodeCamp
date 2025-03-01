@@ -8,10 +8,8 @@ export const actionTypes = createTypes(
     ...createAsyncTypes('submitNewAbout'),
     ...createAsyncTypes('submitNewUsername'),
     ...createAsyncTypes('updateMyEmail'),
-    ...createAsyncTypes('updateUserFlag'),
     ...createAsyncTypes('updateMySocials'),
     ...createAsyncTypes('updateMySound'),
-    ...createAsyncTypes('updateMyTheme'),
     ...createAsyncTypes('updateMyKeyboardShortcuts'),
     ...createAsyncTypes('updateMyHonesty'),
     ...createAsyncTypes('updateMyQuincyEmail'),
@@ -19,6 +17,7 @@ export const actionTypes = createTypes(
     ...createAsyncTypes('submitProfileUI'),
     ...createAsyncTypes('verifyCert'),
     ...createAsyncTypes('resetProgress'),
+    ...createAsyncTypes('resetMyEditorLayout'),
     ...createAsyncTypes('deleteAccount')
   ],
   ns
