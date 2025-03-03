@@ -36,7 +36,7 @@ assert(myGlobal === 10);
 `myGlobal` should be declared using the `let` or `const` keywords
 
 ```js
-assert(/(let|const)\s+myGlobal/.test(code));
+assert(/(let|const)\s+myGlobal/.test(__helpers.removeJSComments(code)));
 ```
 
 `oopsGlobal` should be a global variable and have a value of `5`
@@ -88,14 +88,14 @@ uncapture();
 
 
 function fun1() {
-  // Assign 5 to oopsGlobal Here
+  // Assign 5 to oopsGlobal here
 
 }
 
 // Only change code above this line
 
 function fun2() {
-  var output = "";
+  let output = "";
   if (typeof myGlobal != "undefined") {
     output += "myGlobal: " + myGlobal;
   }
@@ -116,7 +116,7 @@ function fun1() {
 }
 
 function fun2() {
-  var output = "";
+  let output = "";
   if(typeof myGlobal != "undefined") {
     output += "myGlobal: " + myGlobal;
   }

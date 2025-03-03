@@ -1,8 +1,8 @@
 ---
 id: 5f3ef6e0e0c3feaebcf647ad
-title: Step 48
+title: Step 47
 challengeType: 0
-dashedName: step-48
+dashedName: step-47
 ---
 
 # --description--
@@ -14,19 +14,19 @@ Add an `h2` element in the new section and give it the text `Desserts`.
 You should not change your existing `section` element.
 
 ```js
-assert($('section').length === 2);
+assert.lengthOf(document.querySelectorAll('section'), 2);
 ```
 
 You should add an `h2` element in your second `section` element.
 
 ```js
-assert($('section')[1].children[0].tagName === 'H2');
+assert.strictEqual(document.querySelectorAll('section')?.[1]?.children?.[0]?.tagName, 'H2');
 ```
 
 Your new `h2` element should have the text `Desserts`.
 
 ```js
-assert($('h2')[1].innerText.match(/Desserts/i));
+assert.match(document.querySelectorAll('h2')?.[1]?.innerText, /Desserts/i);
 ```
 
 # --seed--
@@ -44,11 +44,9 @@ assert($('h2')[1].innerText.match(/Desserts/i));
   </head>
   <body>
     <div class="menu">
-      <header>
+      <main>
         <h1>CAMPER CAFE</h1>
         <p>Est. 2020</p>
-      </header>
-      <main>
         <section>
           <h2>Coffee</h2>
           <article class="item">
@@ -104,7 +102,7 @@ h1, h2, p {
 
 .price {
   text-align: right;
-  width: 25%
+  width: 25%;
 }
 ```
 
